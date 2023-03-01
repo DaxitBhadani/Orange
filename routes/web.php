@@ -25,4 +25,17 @@ Route::get('logout', [AdminController::class,'logout'])->name('logout');
 
 Route::get('/index', [MainController::class, 'index'])->middleware(['checkLogin'])->name('index');
 
+Route::post('addFakeUser', [UserController::class, 'addFakeUser']);
 Route::get('users', [UserController::class, 'users'])->middleware(['checkLogin'])->name('users');
+Route::get('usersDetail/{id}', [UserController::class, 'usersDetail'])->middleware(['checkLogin'])->name('usersDetail');
+Route::get('addFakeUserView', [UserController::class, 'addFakeUserView'])->middleware(['checkLogin'])->name('addFakeUser');
+Route::post('updateUserDetail/{id}', [UserController::class, 'updateUserDetail'])->middleware(['checkLogin'])->name('updateUserDetail');
+
+
+Route::post('allUserslist', [UserController::class, 'allUserslist']);
+Route::post('updateBlockUser/{id}', [UserController::class, 'updateBlockUser'])->middleware(['checkLogin']) ;
+Route::post('updateLiveStream/{id}', [UserController::class, 'updateLiveStream'])->middleware(['checkLogin']) ;
+Route::post('removeUserImage/{id}', [UserController::class, 'removeUserImage'])->middleware(['checkLogin']) ;
+
+Route::post('fakeUsersList', [UserController::class, 'fakeUsersList']);
+Route::post('LiveStreamerList', [UserController::class, 'LiveStreamerList']);

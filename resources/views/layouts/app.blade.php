@@ -15,9 +15,12 @@
       <link rel="stylesheet" href="{{ asset('assets/vendors/perfect-scrollbar/perfect-scrollbar.css') }}" />
       <link rel="stylesheet" href="{{ asset('assets/css/app.css') }}" />
       <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" />
+
    </head>
    <body>
       <div id="app">
+
+
          <div id="sidebar" class="active">
             <div class="sidebar-wrapper active">
                <div class="sidebar-header">
@@ -43,7 +46,7 @@
                      </li>
                      <li class="sidebar-item">
                         <a href="{{ url('users') }}"
-                           class="sidebar-link {{ request()->is('users') ? 'theme-bg' : '' }}">
+                           class="sidebar-link {{ request()->is('users', 'addFakeUserView', ) ? 'theme-bg' : '' }}">
                         <i data-feather="users"></i>
                         <span>Users</span>
                         </a>
@@ -82,6 +85,7 @@
             </main>
          </div>
       </div>
+
       <script src="{{ asset('assets/js/feather.min.js') }}"></script>
       <script src="{{ asset('assets/js/jquery-3.6.0.min.js') }}"></script>
       <script src="{{ asset('assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
@@ -92,11 +96,12 @@
       <script src="{{ asset('assets/js/select2.min.js') }}"></script>
       <script src="{{ asset('assets/js/jquery.selectric.js') }}"></script>
       <script src="{{ asset('assets/js/main.js') }}"></script>
+
       <script>
          feather.replace();
-         $(document).ready(function() {
-             $('select').selectric();
-         });
+         // $(document).ready(function() {
+         //     $('select').selectric();
+         // });
       </script>
       @yield('scripts')
    </body>

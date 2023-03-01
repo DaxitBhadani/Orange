@@ -13,6 +13,20 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
+            $table->integer("user_type")->default('0');
+            $table->string("identity")->unique();
+            $table->string("name");
+            $table->string("password");
+            $table->string("lives_at")->nullable();
+            $table->integer("age")->nullable();
+            $table->integer("gender");
+            $table->integer("live_stream")->default('1');
+            $table->integer("block_user")->default('0');
+            $table->string("about")->nullable();
+            $table->string("bio")->nullable();
+            $table->string("youtube")->nullable();
+            $table->string("facebook")->nullable();
+            $table->string("instagram")->nullable();
             $table->timestamps();
         });
     }

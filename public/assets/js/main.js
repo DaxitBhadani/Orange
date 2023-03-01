@@ -92,10 +92,15 @@ for (var i = 0; i < sidebarItems.length; i++) { let sidebarItem=sidebarItems[i];
             var domainURL = "http://localhost/orange/public/";
 
             $(document).on('hidden.bs.modal', function () {
-            $(this).find('form').trigger('reset');
+                $(this).find('form').trigger('reset');
             })
 
             feather.replace();
+
             $(document).ready(function() {
-            $('select').selectric();
+                $('select').selectric();
             });
+
+
+            
+       
