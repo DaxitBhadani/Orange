@@ -359,9 +359,11 @@ $(document).ready(function () {
 
                     if ($(this).prop("checked") == true) {
                      
-                        $value = 1;
+                        $value = 2;
                         console.log("Checkbox is Checked.");
                         console.log("1 == true");
+                        // window.location.reload();
+                        
                     } else {
                         $value = 0;
                         console.log("Checkbox is unchecked.");
@@ -369,7 +371,7 @@ $(document).ready(function () {
                     }
 
                     $.post(
-                        `${domainURL}updateLiveStream/` + $id,
+                        `${domainURL}updateLiveStreamUserDetail/` + $id,
                         {
                             id: $id,
                             live_stream: $value,
@@ -396,7 +398,7 @@ $(document).ready(function () {
                 $("#allUserTable").DataTable().ajax.reload(null, false);
                 $("#liveStreamersTable").DataTable().ajax.reload(null, false);
                 $("#fakeUsersTable").DataTable().ajax.reload(null, false);
-                swal("User is Not Added in Block List");
+                swal("User is Not Added in Live Stream");
             }
         });
     });

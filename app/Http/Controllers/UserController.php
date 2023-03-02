@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\LiveApplication;
 use App\Models\User;
 use App\Models\UserImages;
 use Illuminate\Http\Request;
@@ -69,12 +70,12 @@ class UserController extends Controller
                 ->get();
         } else {
             $search = $request->input('search.value');
-            $result = User::Where('title', 'LIKE', "%{$search}%")
+            $result = User::Where('name', 'LIKE', "%{$search}%")->orWhere('identity', 'LIKE', "%{$search}%")->orWhere('age', 'LIKE', "%{$search}%")
                 ->offset($start)
                 ->limit($limit)
                 ->orderBy($order, $dir)
                 ->get();
-            $totalFiltered = User::Where('title', 'LIKE', "%{$search}%")->count();
+            $totalFiltered = User::Where('name', 'LIKE', "%{$search}%")->orWhere('identity', 'LIKE', "%{$search}%")->orWhere('age', 'LIKE', "%{$search}%")->count();
         }
         $data = [];
         foreach ($result as $item) {
@@ -83,6 +84,9 @@ class UserController extends Controller
             $image = '<img src="upload/user/' . $userImage->user_image . '" width="70" height="70" style="object-fit: cover;border-radius: 10px;box-shadow: 0px 10px 10px -8px #acacac;">';
 
             if ($item->live_stream == 1) {
+                $live_stream = '<span class="live_stream_btn bg-warning"> in Process </span>';
+            }
+            else if ($item->live_stream == 2) {
                 $live_stream = '<span class="live_stream_btn "> Yes </span>';
             } else {
                 $live_stream = '<span class="live_stream_btn bg-danger"> No </span>';
@@ -115,7 +119,7 @@ class UserController extends Controller
     }
     public function LiveStreamerList(Request $request)
     {
-        $totalData = User::where('live_stream', 1)->count();
+        $totalData = User::where('live_stream', 2)->count();
         $rows = User::orderBy('id', 'DESC')->get();
 
         $result = $rows;
@@ -129,7 +133,7 @@ class UserController extends Controller
         $start = $request->input('start');
         $order = $columns[$request->input('order.0.column')];
         $dir = $request->input('order.0.dir');
-        $live_stream = 1;
+        $live_stream = 2;
 
         $totalFiltered = $totalData;
         if (empty($request->input('search.value'))) {
@@ -140,13 +144,13 @@ class UserController extends Controller
                 ->get();
         } else {
             $search = $request->input('search.value');
-            $result = User::Where('title', 'LIKE', "%{$search}%")
+            $result = User::Where('name', 'LIKE', "%{$search}%")->orWhere('identity', 'LIKE', "%{$search}%")
                 ->where('live_stream', $live_stream)
                 ->offset($start)
                 ->limit($limit)
                 ->orderBy($order, $dir)
                 ->get();
-            $totalFiltered = User::Where('title', 'LIKE', "%{$search}%")
+            $totalFiltered = User::Where('name', 'LIKE', "%{$search}%")->orWhere('identity', 'LIKE', "%{$search}%")
                 ->where('live_stream', $live_stream)
                 ->count();
         }
@@ -156,7 +160,7 @@ class UserController extends Controller
 
             $image = '<img src="upload/user/' . $userImage->user_image . '" width="70" height="70" style="object-fit: cover;border-radius: 10px;box-shadow: 0px 10px 10px -8px #acacac;">';
 
-            if ($item->live_stream == 1) {
+            if ($item->live_stream == 2) {
                 $live_stream = '<span class="live_stream_btn "> Yes </span>';
             } else {
                 $live_stream = '<span class="live_stream_btn bg-danger"> No </span>';
@@ -214,13 +218,13 @@ class UserController extends Controller
                 ->get();
         } else {
             $search = $request->input('search.value');
-            $result = User::Where('title', 'LIKE', "%{$search}%")
+            $result = User::Where('name', 'LIKE', "%{$search}%")
                 ->where('user_type', $user_type)
                 ->offset($start)
                 ->limit($limit)
                 ->orderBy($order, $dir)
                 ->get();
-            $totalFiltered = User::Where('title', 'LIKE', "%{$search}%")
+            $totalFiltered = User::Where('name', 'LIKE', "%{$search}%")
                 ->where('user_type', $user_type)
                 ->count();
         }
@@ -383,9 +387,7 @@ class UserController extends Controller
             ]);
         }
 
-        $user = User::where('id', $id)
-            ->get()
-            ->first();
+        $user = User::where('id', $id)->get()->first();
         if ($user) {
             if ($request->has('block_user')) {
                 $user->block_user = $request->block_user;
@@ -413,9 +415,45 @@ class UserController extends Controller
                 'errors' => $validator->messages(),
             ]);
         }
-        $user = User::where('id', $id)
-            ->get()
-            ->first();
+
+        $user = User::where('id', $id)->get()->first();
+        if ($user) {
+            if ($request->has('live_stream')) {
+                $user->live_stream = $request->live_stream;
+            }
+            $user->save();
+
+            $LiveApplication = LiveApplication::where('user_id', $request->id)->get()->first();
+            $path = 'upload/video/' . $LiveApplication->video;
+            if (File::exists($path)) {
+                File::delete($path);
+            }
+            $LiveApplication->delete();
+
+            return response()->json([
+                'status' => true,
+                'message' => 'User Updated Successfully',
+            ]);
+        } else {
+            return response()->json([
+                'status' => 404,
+                'message' => 'User Not Found',
+            ]);
+        }
+    }
+
+    public function updateLiveStreamUserDetail(Request $request, $id)
+    {
+        $validator = Validator::make($request->all(), []);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => 400,
+                'errors' => $validator->messages(),
+            ]);
+        }
+
+        $user = User::where('id', $id)->get()->first();
         if ($user) {
             if ($request->has('live_stream')) {
                 $user->live_stream = $request->live_stream;
@@ -433,7 +471,6 @@ class UserController extends Controller
             ]);
         }
     }
-
     public function removeUserImage($id)
     {
         $userImage = UserImages::find($id);

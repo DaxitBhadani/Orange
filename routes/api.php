@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\LiveApplicationController;
 use App\Http\Controllers\UserController;
+use App\Models\LiveApplication;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -21,4 +23,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 // Add User
 Route::post('addUser', [UserController::class, 'addUser']);
+
+Route::post('addLiveApplication', [LiveApplicationController::class, 'addLiveApplication']);
 

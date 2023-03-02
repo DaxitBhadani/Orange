@@ -1,0 +1,33 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('live_applications', function (Blueprint $table) {
+            $table->id();
+            $table->integer('user_id');
+            $table->string('live_app_status')->default('0');
+            $table->string('video');
+            $table->string('language');
+            $table->string('about');
+            $table->string('social_link');
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('live_applications');
+    }
+};
