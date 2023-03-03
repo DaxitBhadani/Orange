@@ -1152,3 +1152,19 @@ div.dataTables_processing > div:last-child > div {
 .cursor {
     cursor: pointer;
 }
+table.dataTable tbody th, table.dataTable tbody td {
+    padding: 8px 10px;
+    color: #000;
+    font-weight: 500;
+}
+table.dataTable thead th, table.dataTable tfoot th {
+    font-weight: 500;
+    color: #a5a5a5;
+}
+.custom_img {
+    box-shadow: 0px 20px 20px -5px #d9d9d9;
+    border-radius: 10px;
+}
+.object-cover {
+    object-fit: cover;
+}

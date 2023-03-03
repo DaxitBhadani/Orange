@@ -72,9 +72,6 @@
                             </div>
                         </div>
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mt-3">
-                            {{-- <button type="button"
-                                class="approve_application btn unblock fw-500 py-2 me-3 text-white">Approve
-                                Application</button> --}}
 
                                 <label class="block_switch btn unblock cursor ">
                                     <input type="checkbox" name="live_stream" rel="{{$liveAppData->user_id}}" id="live_stream_status" class="approve_application">

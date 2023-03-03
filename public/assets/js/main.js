@@ -100,7 +100,3 @@ for (var i = 0; i < sidebarItems.length; i++) { let sidebarItem=sidebarItems[i];
             $(document).ready(function() {
                 $('select').selectric();
             });
-
-
-            
-       

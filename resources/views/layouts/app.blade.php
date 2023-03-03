@@ -61,6 +61,55 @@
                                 <span>Live Application</span>
                             </a>
                         </li>
+                        <li class="sidebar-item">
+                            <a href="{{ url('livehistory') }}"
+                                class="sidebar-link {{ request()->is('livehistory') ? 'theme-bg' : '' }}">
+                                <i data-feather="clock"></i>
+                                <span>Live History</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="{{ url('redeemRequests') }}"
+                                class="sidebar-link {{ request()->is('redeemRequests') ? 'theme-bg' : '' }}">
+                                <i data-feather="clipboard"></i>
+                                <span>Redeem Requests</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="{{ url('diamondpacks') }}"
+                                class="sidebar-link {{ request()->is('diamondpacks') ? 'theme-bg' : '' }}">
+                                <i data-feather="package"></i>
+                                <span>Diamond Packs</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="{{ url('gifts') }}"
+                                class="sidebar-link {{ request()->is('gifts') ? 'theme-bg' : '' }}">
+                                <i data-feather="gift"></i>
+                                <span>Gifts</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="{{ url('interest') }}"
+                                class="sidebar-link {{ request()->is('interest') ? 'theme-bg' : '' }}">
+                                <i data-feather="heart"></i>
+                                <span>Interest</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="{{ url('profileverification') }}"
+                                class="sidebar-link {{ request()->is('profileverification') ? 'theme-bg' : '' }}">
+                                <i data-feather="check-circle"></i>
+                                <span>Profile Verification</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="{{ url('notifications') }}"
+                                class="sidebar-link {{ request()->is('notifications') ? 'theme-bg' : '' }}">
+                                <i data-feather="bell"></i>
+                                <span>notifications</span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
                 <button class="sidebar-toggler btn x">
