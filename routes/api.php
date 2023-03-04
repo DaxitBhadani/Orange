@@ -3,6 +3,8 @@
 use App\Http\Controllers\LiveApplicationController;
 use App\Http\Controllers\LiveHistoryController;
 use App\Http\Controllers\ProfileVerificationController;
+use App\Http\Controllers\RedeemRequestController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -30,4 +32,8 @@ Route::post('addLiveApplication', [LiveApplicationController::class, 'addLiveApp
 Route::post('addLiveHistory', [LiveHistoryController::class, 'addLiveHistory']);
 
 Route::post('addProfileVerification', [ProfileVerificationController::class, 'addProfileVerification']);
+
+Route::post('addRedeemrequest', [RedeemRequestController::class, 'addRedeemrequest']);
+
+Route::post('addReport', [ReportController::class, 'addReport']);
 

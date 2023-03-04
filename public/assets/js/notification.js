@@ -102,6 +102,44 @@ $(document).ready(function () {
     });
 
 
+    
+    $("#notificationTable").on('click', '.delete', function (e) {
+        e.preventDefault();
+
+        var id = $(this).attr('rel');
+        console.log(id);
+
+        swal({
+            title: "Are you sure You want to delete!",
+            icon: "error",
+            buttons: true,
+            dangerMode: true,
+        })
+        .then((deleteValue) => {
+            if (deleteValue) {
+                if (deleteValue == true) {
+                    $.ajax({
+                        type: "POST",
+                        url: `${domainURL}deleteNotification/` + id,
+                        dataType: "json",
+                        success: function (response) {
+                            if (response.status == 404) {
+                                console.log(response.message);
+                            } else if (response.status == 200) {
+                                swal(
+                                    `Notification Deleted Successfully`, {
+                                        icon: "success",
+                                    });
+                                    $("#notificationTable").DataTable().ajax.reload(null, false);
+                                console.log(response.message);
+                            }
+                        }
+                    });
+                }
+            }
+        });
+    });
+
 
 
 });

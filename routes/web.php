@@ -11,6 +11,8 @@ use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProfileVerificationController;
 use App\Http\Controllers\RedeemRequestController;
+use App\Http\Controllers\ReportController;
+use App\Http\Controllers\SettingController;
 use App\Http\Controllers\UserController;
 use App\Models\LiveApplication;
 use Illuminate\Support\Facades\Route;
@@ -86,3 +88,16 @@ Route::get('notifications', [NotificationController::class, 'notifications'])->m
 Route::post('sendNotification', [NotificationController::class, 'sendNotification'])->middleware(['checkLogin']);
 Route::post('notificationList', [NotificationController::class, 'notificationList'])->middleware(['checkLogin']);
 Route::post('updateNotification/{id}', [NotificationController::class, 'updateNotification'])->middleware(['checkLogin']);
+Route::post('deleteNotification/{id}', [NotificationController::class, 'deleteNotification'])->middleware(['checkLogin']);
+
+Route::get('settings', [SettingController::class, 'settings'])->middleware(['checkLogin']);
+Route::post('updateSetting', [SettingController::class,'updateSetting'])->middleware(['checkLogin']);
+
+Route::post('pendingRedeemList', [RedeemRequestController::class, 'pendingRedeemList'])->middleware(['checkLogin']);
+Route::post('updateRedeemRequest/{id}', [RedeemRequestController::class, 'updateRedeemRequest'])->middleware(['checkLogin']);
+Route::post('completedRedeemList', [RedeemRequestController::class, 'completedRedeemList'])->middleware(['checkLogin']);
+Route::post('deleteRedeemRequest/{id}', [RedeemRequestController::class, 'deleteRedeemRequest'])->middleware(['checkLogin']);
+
+Route::get('reports', [ReportController::class, 'reports'])->middleware(['checkLogin']);
+Route::post('reportList', [ReportController::class, 'reportList'])->middleware(['checkLogin']);
+Route::post('reportBlockUser/{id}', [ReportController::class, 'reportBlockUser'])->middleware(['checkLogin']);

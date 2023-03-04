@@ -8,8 +8,6 @@ use Illuminate\Support\Facades\Session;
 
 class AdminController extends Controller
 {
-    //
-
     public function login()
     {
         if (Session::get('username')) {

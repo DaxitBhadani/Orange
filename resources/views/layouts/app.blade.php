@@ -107,7 +107,21 @@
                             <a href="{{ url('notifications') }}"
                                 class="sidebar-link {{ request()->is('notifications') ? 'theme-bg' : '' }}">
                                 <i data-feather="bell"></i>
-                                <span>notifications</span>
+                                <span>Notifications</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="{{ url('reports') }}"
+                                class="sidebar-link {{ request()->is('reports') ? 'theme-bg' : '' }}">
+                                <i data-feather="help-circle"></i>
+                                <span>Reports</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="{{ url('settings') }}"
+                                class="sidebar-link {{ request()->is('settings') ? 'theme-bg' : '' }}">
+                                <i data-feather="settings"></i>
+                                <span>Settings</span>
                             </a>
                         </li>
                     </ul>

@@ -13,6 +13,14 @@ return new class extends Migration
     {
         Schema::create('redeem_requests', function (Blueprint $table) {
             $table->id();
+            $table->integer('user_id');
+            $table->string('request_id');
+            $table->integer('coin_amount');
+            $table->float('payable_amount')->default(0);
+            $table->float('amount_paid')->nullable();
+            $table->string('payment_gateway');
+            $table->string('account_detail');
+            $table->integer('is_completed')->default(0);
             $table->timestamps();
         });
     }

@@ -70,23 +70,29 @@ class UserController extends Controller
                 ->get();
         } else {
             $search = $request->input('search.value');
-            $result = User::Where('name', 'LIKE', "%{$search}%")->orWhere('identity', 'LIKE', "%{$search}%")->orWhere('age', 'LIKE', "%{$search}%")
+            $result = User::Where('name', 'LIKE', "%{$search}%")
+                ->orWhere('identity', 'LIKE', "%{$search}%")
+                ->orWhere('age', 'LIKE', "%{$search}%")
                 ->offset($start)
                 ->limit($limit)
                 ->orderBy($order, $dir)
                 ->get();
-            $totalFiltered = User::Where('name', 'LIKE', "%{$search}%")->orWhere('identity', 'LIKE', "%{$search}%")->orWhere('age', 'LIKE', "%{$search}%")->count();
+            $totalFiltered = User::Where('name', 'LIKE', "%{$search}%")
+                ->orWhere('identity', 'LIKE', "%{$search}%")
+                ->orWhere('age', 'LIKE', "%{$search}%")
+                ->count();
         }
         $data = [];
         foreach ($result as $item) {
-            $userImage = UserImages::where('user_id', $item->id)->get()->first();
+            $userImage = UserImages::where('user_id', $item->id)
+                ->get()
+                ->first();
 
             $image = '<img src="upload/user/' . $userImage->user_image . '" width="70" height="70" style="object-fit: cover;border-radius: 10px;box-shadow: 0px 10px 10px -8px #acacac;">';
 
             if ($item->live_stream == 1) {
                 $live_stream = '<span class="live_stream_btn bg-warning"> in Process </span>';
-            }
-            else if ($item->live_stream == 2) {
+            } elseif ($item->live_stream == 2) {
                 $live_stream = '<span class="live_stream_btn "> Yes </span>';
             } else {
                 $live_stream = '<span class="live_stream_btn bg-danger"> No </span>';
@@ -99,9 +105,9 @@ class UserController extends Controller
             }
 
             if ($item->block_user == 1) {
-                $block_user = '<label class="switch"><input type="checkbox" name="block_user" rel="' . $item->id . '" value="' . $item->block_user . '" id="block_user" class="block_user" checked><span class="slider"></span> </label>';
+                $block_user = '<label class="switch switch-auto"><input type="checkbox" name="block_user" rel="' . $item->id . '" value="' . $item->block_user . '" id="block_user" class="block_user" checked> <span class="btn unblock text-white">  ' . __('Unblock') . ' </span> </label>';
             } else {
-                $block_user = '<label class="switch"><input type="checkbox" name="block_user" rel="' . $item->id . '" value="' . $item->block_user . '" id="block_user" class="block_user"><span class="slider bg-danger"></span> </label>';
+                $block_user = '<label class="switch switch-auto"><input type="checkbox" name="block_user" rel="' . $item->id . '" value="' . $item->block_user . '" id="block_user" class="block_user"> <span class="btn block text-white">' . __('Block') . '</span>  </label>';
             }
 
             $view = '<a href="usersDetail/' . $item->id . '" class="me-3 btn btn-primary px-4 text-white edit" data-image="' . $item->image . '" data-identity="' . $item->identity . '" data-name="' . $item->name . '" data-password="' . $item->password . '" data-lives_at="' . $item->lives_at . '" data-age="' . $item->age . '" data-gender="' . $item->gender . '" data-live_stream="' . $item->live_stream . '" data-block_user="' . $item->block_user . '" data-about="' . $item->about . '" data-bio="' . $item->bio . '" data-youtube="' . $item->youtube . '" data-facebook="' . $item->facebook . '" data-instagram="' . $item->instagram . '" rel=' . $item->id . ' >' . __('View') . '</a>';
@@ -144,19 +150,23 @@ class UserController extends Controller
                 ->get();
         } else {
             $search = $request->input('search.value');
-            $result = User::Where('name', 'LIKE', "%{$search}%")->orWhere('identity', 'LIKE', "%{$search}%")
+            $result = User::Where('name', 'LIKE', "%{$search}%")
+                ->orWhere('identity', 'LIKE', "%{$search}%")
                 ->where('live_stream', $live_stream)
                 ->offset($start)
                 ->limit($limit)
                 ->orderBy($order, $dir)
                 ->get();
-            $totalFiltered = User::Where('name', 'LIKE', "%{$search}%")->orWhere('identity', 'LIKE', "%{$search}%")
+            $totalFiltered = User::Where('name', 'LIKE', "%{$search}%")
+                ->orWhere('identity', 'LIKE', "%{$search}%")
                 ->where('live_stream', $live_stream)
                 ->count();
         }
         $data = [];
         foreach ($result as $item) {
-            $userImage = UserImages::where('user_id', $item->id)->get()->first();
+            $userImage = UserImages::where('user_id', $item->id)
+                ->get()
+                ->first();
 
             $image = '<img src="upload/user/' . $userImage->user_image . '" width="70" height="70" style="object-fit: cover;border-radius: 10px;box-shadow: 0px 10px 10px -8px #acacac;">';
 
@@ -173,12 +183,12 @@ class UserController extends Controller
             }
 
             if ($item->block_user == 1) {
-                $block_user = '<label class="switch"><input type="checkbox" name="block_user" rel="' . $item->id . '" value="' . $item->block_user . '" id="block_user" class="block_user" checked><span class="slider"></span> </label>';
+                $block_user = '<label class="switch switch-auto"><input type="checkbox" name="block_user" rel="' . $item->id . '" value="' . $item->block_user . '" id="block_user" class="block_user" checked><span class="btn unblock text-white">  ' . __('Unblock') . ' </span> </label>';
             } else {
-                $block_user = '<label class="switch"><input type="checkbox" name="block_user" rel="' . $item->id . '" value="' . $item->block_user . '" id="block_user" class="block_user"><span class="slider bg-danger"></span> </label>';
+                $block_user = '<label class="switch switch-auto"><input type="checkbox" name="block_user" rel="' . $item->id . '" value="' . $item->block_user . '" id="block_user" class="block_user"><span class="btn block text-white">' . __('Block') . '</span> </label>';
             }
 
-            $view = '<a href="usersDetail/' . $item->id . '" data-title="' . $item->title . '" data-quality="' . $item->quality . '" data-size="' . $item->size . '" data-download="' . $item->download_type . '" data-sourcetype="' . $item->source_type . '" data-sourceurl="' . $item->source_url . '" data-accesstype="' . $item->access_type . '" class="me-3 btn btn-primary px-4 text-white edit" rel=' . $item->id . ' >' . __('view') . '</a>';
+            $view = '<a href="usersDetail/' . $item->id . '" data-title="' . $item->title . '" data-quality="' . $item->quality . '" data-size="' . $item->size . '" data-download="' . $item->download_type . '" data-sourcetype="' . $item->source_type . '" data-sourceurl="' . $item->source_url . '" data-accesstype="' . $item->access_type . '" class="me-3 btn btn-primary px-4 text-white edit" rel=' . $item->id . ' >' . __('View') . '</a>';
 
             $data[] = [$image, $item->identity, $item->name, $live_stream, $item->age, $gender, $block_user, $view];
         }
@@ -243,12 +253,13 @@ class UserController extends Controller
             }
 
             if ($item->block_user == 1) {
-                $block_user = '<label class="switch"><input type="checkbox" name="block_user" rel="' . $item->id . '" value="' . $item->block_user . '" id="block_user" class="block_user" checked><span class="slider"></span> </label>';
+                $block_user = '<label class="switch switch-auto"><input type="checkbox" name="block_user" rel="' . $item->id . '" value="' . $item->block_user . '" id="block_user" class="block_user" checked><span class="btn unblock text-white">  ' . __('Unblock') . ' </span> </label>';
             } else {
-                $block_user = '<label class="switch"><input type="checkbox" name="block_user" rel="' . $item->id . '" value="' . $item->block_user . '" id="block_user" class="block_user"><span class="slider bg-danger"></span> </label>';
+                $block_user = '<label class="switch switch-auto"><input type="checkbox" name="block_user" rel="' . $item->id . '" value="' . $item->block_user . '" id="block_user" class="block_user"><span class="btn block text-white">' . __('Block') . '</span> </label>';
             }
 
-            $view = '<a href="usersDetail/' . $item->id . '" data-title="' . $item->title . '" data-quality="' . $item->quality . '" data-size="' . $item->size . '" data-download="' . $item->download_type . '" data-sourcetype="' . $item->source_type . '" data-sourceurl="' . $item->source_url . '" data-accesstype="' . $item->access_type . '" class="me-3 btn btn-primary px-4 text-white edit" rel=' . $item->id . ' >' . __('view') . '</a>';
+            
+            $view = '<a href="usersDetail/' . $item->id . '" data-title="' . $item->title . '" data-quality="' . $item->quality . '" data-size="' . $item->size . '" data-download="' . $item->download_type . '" data-sourcetype="' . $item->source_type . '" data-sourceurl="' . $item->source_url . '" data-accesstype="' . $item->access_type . '" class="me-3 btn btn-primary px-4 text-white edit" rel=' . $item->id . ' >' . __('View') . '</a>';
 
             $data[] = [$image, $item->identity, $item->name, $item->password, $item->age, $gender, $block_user, $view];
         }
@@ -279,7 +290,7 @@ class UserController extends Controller
         $block_user = 0;
         $user_type = 1;
 
-        $user = new User;
+        $user = new User();
         $user->name = $request->name;
         $user->identity = $request->identity;
         $user->password = $request->password;
@@ -301,7 +312,7 @@ class UserController extends Controller
         if ($request->hasFile('images')) {
             $files = $request->file('images');
             foreach ($files as $file) {
-                $userimage = new UserImages;
+                $userimage = new UserImages();
                 $userimage->user_id = $user->id;
                 $fileName = $file->getClientOriginalName();
                 $extenstion = $file->getClientOriginalExtension();
@@ -312,7 +323,7 @@ class UserController extends Controller
                 $userimage->save();
             }
         }
-        
+
         return response()->json([
             'status' => true,
             'message' => 'User Added Successfully',
@@ -357,7 +368,7 @@ class UserController extends Controller
         if ($request->hasFile('images')) {
             $files = $request->file('images');
             foreach ($files as $file) {
-                $userimage = new UserImages;
+                $userimage = new UserImages();
                 $userimage->user_id = $user->id;
                 $fileName = $file->getClientOriginalName();
                 $extenstion = $file->getClientOriginalExtension();
@@ -387,7 +398,9 @@ class UserController extends Controller
             ]);
         }
 
-        $user = User::where('id', $id)->get()->first();
+        $user = User::where('id', $id)
+            ->get()
+            ->first();
         if ($user) {
             if ($request->has('block_user')) {
                 $user->block_user = $request->block_user;
@@ -416,14 +429,18 @@ class UserController extends Controller
             ]);
         }
 
-        $user = User::where('id', $id)->get()->first();
+        $user = User::where('id', $id)
+            ->get()
+            ->first();
         if ($user) {
             if ($request->has('live_stream')) {
                 $user->live_stream = $request->live_stream;
             }
             $user->save();
 
-            $LiveApplication = LiveApplication::where('user_id', $request->id)->get()->first();
+            $LiveApplication = LiveApplication::where('user_id', $request->id)
+                ->get()
+                ->first();
             $path = 'upload/video/' . $LiveApplication->video;
             if (File::exists($path)) {
                 File::delete($path);
@@ -453,7 +470,9 @@ class UserController extends Controller
             ]);
         }
 
-        $user = User::where('id', $id)->get()->first();
+        $user = User::where('id', $id)
+            ->get()
+            ->first();
         if ($user) {
             if ($request->has('live_stream')) {
                 $user->live_stream = $request->live_stream;
@@ -516,7 +535,9 @@ class UserController extends Controller
             ]);
         }
 
-        $user = User::where('id', $id)->get()->first();
+        $user = User::where('id', $id)
+            ->get()
+            ->first();
 
         if ($user) {
             $user->identity = $request->identity;
@@ -536,7 +557,7 @@ class UserController extends Controller
             if ($request->hasFile('images')) {
                 $files = $request->file('images');
                 foreach ($files as $file) {
-                    $userimage = new UserImages;
+                    $userimage = new UserImages();
                     $userimage->user_id = $user->id;
                     $fileName = $file->getClientOriginalName();
                     $extenstion = $file->getClientOriginalExtension();

@@ -39,8 +39,7 @@
                 </div>
                 <div class="card-body">
                     <div class="tab-content" id="myTabContent">
-                        <div class="tab-pane show active" id="allUser-tab-pane" role="tabpanel" aria-labelledby="movie-tab"
-                            tabindex="0">
+                        <div class="tab-pane show active" id="allUser-tab-pane" role="tabpanel" tabindex="0">
                             <table class="table table-striped" id="allUserTable">
                                 <thead>
                                     <tr>

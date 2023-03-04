@@ -24,8 +24,7 @@
 
             <div class="card-body">
                 <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane show active" id="pendingRedeem-pane" role="tabpanel" aria-labelledby="movie-tab"
-                        tabindex="0">
+                    <div class="tab-pane show active" id="pendingRedeem-pane" role="tabpanel" tabindex="0">
                         <table class="table table-striped" id="pendingRedeemTable">
                             <thead>
                                 <tr>
@@ -35,35 +34,131 @@
                                     <th> Coin Amount </th>
                                     <th> Payable Amount </th>
                                     <th> Payment Gateway </th>
-                                    <th style="width: 200px !important;"> Action </th>
+                                    <th style="width: 250px !important;"> Action </th>
                                 </tr>
                             </thead>
                             <tbody>
                             </tbody>
                         </table>
                     </div>
-                    <div class="tab-pane" id="completedRedeem-tab-pane" role="tabpanel" aria-labelledby="liveStreamers-tab"
-                        tabindex="0">
-                        {{-- <table class="table table-striped" id="liveStreamersTable">
+                    <div class="tab-pane" id="completedRedeem-tab-pane" role="tabpanel" tabindex="0">
+                        <table class="table table-striped" id="completedRedeemTable">
                             <thead>
                                 <tr>
-                                    <th width="100px">User Image</th>
-                                    <th> Identity</th>
-                                    <th> Full Name </th>
-                                    <th class="live_stream_th"> Live Stream Eligible </th>
-                                    <th> Age </th>
-                                    <th> Gender </th>
-                                    <th width="100px"> Block User </th>
-                                    <th style="text-align: right; width: 100px !important;">View Details</th>
+                                    <th width="120px">User Image</th>
+                                    <th> Name </th>
+                                    <th> Request ID </th>
+                                    <th> Coin Amount </th>
+                                    <th> Amount Paid </th>
+                                    <th> Payment Gateway </th>
+                                    <th style="width: 250px !important;"> Action </th>
                                 </tr>
                             </thead>
                             <tbody>
                             </tbody>
-                        </table> --}}
+                        </table>
                     </div>
 
                 </div>
 
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="redeemCompleteModal" tabindex="-1" aria-labelledby="redeemCompleteLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="redeemCompleteLabel"> </h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="redeemCompleteFormHeader">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="userimage">
+                                <img src="" alt="" id="userimage"
+                                    style="width: 100px; height: 100px; object-fit: cover; border-radius: 30px; box-shadow: 0px 10px 10px -10px #8f8f8f;">
+                            </div>
+                            <div class="username ms-3" id="username"></div>
+                        </div>
+                    </div>
+
+                    <form id="redeemCompleteForm" method="post">
+                        <input type="hidden" name="redeemRequestId" id="redeemRequestId">
+                        <input type="hidden" name="is_completed" id="is_completed" value="1">
+
+                        <div class="form-group">
+                            <label for="coin_amount" class="form-label">Coin Amount</label>
+                            <input type="text" class="form-control" name="coin_amount" id="coin_amount" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="amount paid" class="form-label">Amount Paid</label>
+                            <input type="number" step=any class="form-control" name="amount_paid" id="amount_paid"
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <label for="payment_gateway" class="form-label">Payment gateway</label>
+                            <input type="text" class="form-control" name="payment_gateway" id="payment_gateway"
+                                readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="account_detail" class="form-label">Account Detail</label>
+                            <textarea name="account_detail" id="account_detail" cols="30" rows="3" class="form-control" readonly></textarea>
+                        </div>
+                        <button type="submit" class="m-3 mx-0 btn unblock px-4 text-white complete">Complete</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="redeemCompleteViewModal" tabindex="-1" aria-labelledby="redeemCompleteLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="redeemCompleteLabel1"> </h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="redeemCompleteFormHeader">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="userimage">
+                                <img src="" alt="" id="userimage1"
+                                    style="width: 100px; height: 100px; object-fit: cover; border-radius: 30px; box-shadow: 0px 10px 10px -10px #8f8f8f;">
+                            </div>
+                            <div class="username ms-3" id="username1"></div>
+                        </div>
+                    </div>
+                    <form id="redeemCompleteForm" method="post">
+                        <input type="hidden" name="redeemRequestId" id="redeemRequestId1">
+                        <input type="hidden" name="is_completed" id="is_completed1" value="1">
+
+                        <div class="form-group">
+                            <label for="coin_amount" class="form-label">Coin Amount</label>
+                            <input type="text" class="form-control" name="coin_amount" id="coin_amount1" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="amount paid" class="form-label">Amount Paid</label>
+                            <input type="number" step=any class="form-control" name="amount_paid" id="amount_paid1"
+                                readonly required>
+                        </div>
+                        <div class="form-group">
+                            <label for="payment_gateway" class="form-label">Payment gateway</label>
+                            <input type="text" class="form-control" name="payment_gateway" id="payment_gateway1"
+                                readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="account_detail" class="form-label">Account Detail</label>
+                            <textarea name="account_detail" id="account_detail1" cols="30" rows="3" class="form-control" readonly></textarea>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

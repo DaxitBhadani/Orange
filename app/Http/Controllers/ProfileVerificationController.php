@@ -145,7 +145,7 @@ class ProfileVerificationController extends Controller
         else {
             return response()->json([
                 'status' => 200,
-                'message' => 'Profile Verification Already in Pending',
+                'message' => 'Profile Verification Already in Pending or Verified',
             ]); 
         }
         
