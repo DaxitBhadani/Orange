@@ -15,7 +15,7 @@ $(document).ready(function () {
             [0, "desc"]
         ],
         columnDefs: [{
-            targets: [],
+            targets: [0, 1, 2, 3, 4],
             orderable: false,
         },],
         ajax: {
@@ -42,9 +42,9 @@ $(document).ready(function () {
                 if (response.status == false) {
                     console.log(response.errors);
                 } else if (response.status == true) {
-                    swal("Diamond Pack Added successfully", {
-                        icon: "success",
-                    });
+                    // swal("Diamond Pack Added successfully", {
+                    //     icon: "success",
+                    // });
                     $("#diamondPackTable").DataTable().ajax.reload(null, false);
                     $('#diamondPackModal').modal('hide');
                    
@@ -92,10 +92,10 @@ $(document).ready(function () {
                 } else if (response.status == 404) {
                     alert(response.message);
                 } else if (response.status == true) {
-                    swal({
-                        title: "Diamond Pack Updated Succesfully!",
-                        icon: "success",
-                    });
+                    // swal({
+                    //     title: "Diamond Pack Updated Succesfully!",
+                    //     icon: "success",
+                    // });
                     $("#diamondPackTable").DataTable().ajax.reload(null, false);
                     $('#editDiamondPackModal').modal('hide');
 
@@ -129,10 +129,10 @@ $(document).ready(function () {
                                 console.log(response.message);
                             } else if (response.status == 200) {
                                 $("#diamondPackTable").DataTable().ajax.reload(null, false);
-                                swal(
-                                    `Diamond Pack Deleted Successfully`, {
-                                    icon: "success",
-                                });
+                                // swal(
+                                //     `Diamond Pack Deleted Successfully`, {
+                                //     icon: "success",
+                                // });
                                 console.log(response.message);
                             }
                         }

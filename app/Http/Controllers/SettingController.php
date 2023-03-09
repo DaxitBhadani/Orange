@@ -83,4 +83,14 @@ class SettingController extends Controller
         
 
     }
+
+    public function settingApi()
+    {
+        $settingApi = Setting::get()->first();
+        return response()->json([
+            'status' => true,
+            'message' => 'Setting Data',
+            'data' => $settingApi,
+        ]);
+    }
 }

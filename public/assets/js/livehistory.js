@@ -14,8 +14,8 @@ $(document).ready(function () {
         aaSorting: [
             [0, "desc"]
         ],
-        columnDefs: [{
-            targets: [],
+        columnDefs: [{  
+            targets: [0, 1, 2, 3, 4, 5],
             orderable: false,
         }],
         ajax: {

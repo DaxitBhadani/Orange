@@ -143,4 +143,14 @@ class DiamondPackController extends Controller
             ]);
         }
     }
+
+    public function fetchdiamondPackList()
+    {
+        $diamondPacks = DiamondPack::all();
+        return response()->json([
+            'status' => true,
+            'message' => 'Fetch Diamond Pack List',
+            'data' => $diamondPacks,
+        ]);
+    }
 }

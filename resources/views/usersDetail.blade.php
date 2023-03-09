@@ -8,7 +8,7 @@
                 <div class="card-header d-flex align-items-center justify-content-between">
                     <div class="page-title d-flex align-items-center">
                         <h3 class="mb-0 fw-500 theme-color"> {{ $user->name }} </h3>
-                        @if ($user->live_stream == 2)
+                        @if ($user->live_stream == 1 || $user->live_stream == 2)
                             <div class="ms-3">
                                 <span class="badge canGoLive"> Can Go Live </span>
                             </div>
@@ -165,7 +165,7 @@
                 </div>
                 <div class="modal-footer justify-content-start">
                     {{-- <button type="button" class="btn btn-secondary px-4 py-2" data-bs-dismiss="modal">Close</button> --}}
-                    <button type="submit" class="btn theme-bg text-light px-4 py-2 fw-500" style="width: 150px;">Submit</button>
+                    <button type="submit" class="btn theme-bg text-light px-4 py-2 fw-500" style="width: 200px;">Update Detail</button>
                 </div>
             </form>
         </div>

@@ -15,7 +15,7 @@ $(document).ready(function () {
             [0, "desc"]
         ],
         columnDefs: [{
-            targets: [],
+            targets: [0, 1, 2],
             orderable: false,
         },],
         ajax: {
@@ -87,10 +87,10 @@ $(document).ready(function () {
                 } else if (response.status == 404) {
                     alert(response.message);
                 } else if (response.status == true) {
-                    swal({
-                        title: "Gift Updated Succesfully!",
-                        icon: "success",
-                    });
+                    // swal({
+                    //     title: "Gift Updated Succesfully!",
+                    //     icon: "success",
+                    // });
                     $("#giftTable").DataTable().ajax.reload(null, false);
                     $('#editGiftModal').modal('hide');
 

@@ -225,7 +225,7 @@ body #main {
     font-size: 22px;
 }
 .card-top {
-    padding-left: 70px;
+    padding-left: 75px;
 }
 .card-right-icon {
     width: 60px;
@@ -255,6 +255,9 @@ body .form-group label {
     font-weight: 500;
     font-size: 15px !important;
     letter-spacing: 0.4px !important;
+}
+body .form-group label.form-label {
+    width: 100%;
 }
 table {
     width: 100% !important;

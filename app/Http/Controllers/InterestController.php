@@ -138,6 +138,16 @@ class InterestController extends Controller
             ]);
         }
     }
+
+    public function fetchInterestList()
+    {
+        $fetchInterestList = Interest::all();
+        return response()->json([
+            'status' => true,
+            'message' => 'Interest List',
+            'data' => $fetchInterestList,
+        ]);
+    }
 }
 
 

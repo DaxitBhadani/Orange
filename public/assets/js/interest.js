@@ -16,7 +16,7 @@ $(document).ready(function () {
             [0, "desc"]
         ],
         columnDefs: [{
-            targets: [],
+            targets: [0, 1],
             orderable: false,
         },],
         ajax: {
@@ -87,10 +87,10 @@ $(document).ready(function () {
                 } else if (response.status == 404) {
                     alert(response.message);
                 } else if (response.status == 200) {
-                    swal({
-                        title: "Interest Updated Succesfully!",
-                        icon: "success",
-                    });
+                    // swal({
+                    //     title: "Interest Updated Succesfully!",
+                    //     icon: "success",
+                    // });
                     $("#interestTable").DataTable().ajax.reload(null, false);
                     $('#editInterestModal').modal('hide');
 

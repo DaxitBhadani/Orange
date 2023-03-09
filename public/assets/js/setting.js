@@ -49,7 +49,7 @@ $(document).ready(function () {
                 }
             } else {
                 // window.location.reload();
-                swal("Status Not Changed");
+                // swal("Status Not Changed");
             }
         });
     });

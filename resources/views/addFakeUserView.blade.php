@@ -101,7 +101,9 @@
                     </div>
                 </div>
                 <div class="modal-footer ">
-                    <button type="button" class="btn btn-secondary px-4 py-2" data-bs-dismiss="modal">Close</button>
+                    <a href="{{ url('users') }}" class="btn btn-secondary px-4 py-2">
+                      Close
+                    </a>
                     <button type="submit" class="btn theme-bg text-light px-4 py-2">Submit</button>
                 </div>
             </form>

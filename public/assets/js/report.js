@@ -10,7 +10,7 @@ $(document).ready(function () {
             [0, "desc"]
         ],
         columnDefs: [{
-            targets: [],
+            targets: [0, 1, 2, 3, 4, 5],
             orderable: false,
         }],
         ajax: {
@@ -32,23 +32,23 @@ $(document).ready(function () {
             dangerMode: true,
         }).then((willDelete) => {
             if (willDelete) {
-                swal("Block User", {
-                    icon: "success",
-                });
+                // swal("Block User", {
+                //     icon: "success",
+                // });
     
                 if (user_type == "1") {
                     $id = $(this).attr("rel");
     
                     if ($(this).prop("checked") == true) {
-                        swal("User Added In Block list", {
-                            icon: "success",
-                        });
+                        // swal("User Added In Block list", {
+                        //     icon: "success",
+                        // });
                         console.log("Checkbox is Checked.");
                         console.log("1 == true");
                     } else {
-                        swal("User Not Added In Block list", {
-                            icon: "success",
-                        });
+                        // swal("User Not Added In Block list", {
+                        //     icon: "success",
+                        // });
                         console.log("Checkbox is unchecked.");
                         console.log("0 == false");
                     }
@@ -74,7 +74,7 @@ $(document).ready(function () {
                 }
             } else {
                 $("#reportTable").DataTable().ajax.reload(null, false);
-                swal("User is Not Added in Block List");
+                // swal("User is Not Added in Block List");
             }
         });
     });

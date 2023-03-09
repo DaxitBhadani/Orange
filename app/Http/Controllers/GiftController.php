@@ -163,5 +163,16 @@ class GiftController extends Controller
         }
     }
 
+    public function fetchGiftsList()
+    {
+        $fetchGiftsList = Gift::all();
+        return response()->json([
+            'status' => true,
+            'message' => 'Gifts List',
+            'data' => $fetchGiftsList,
+
+        ]);
+    }
+
 
 }

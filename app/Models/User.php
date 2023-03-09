@@ -10,4 +10,9 @@ class User extends Model
     use HasFactory;
     protected $table = 'users';
 
+    public function interest_ids()
+    {
+        return $this->hasMany(UserInterest::class, 'user_id', 'id');
+    }
+
 }

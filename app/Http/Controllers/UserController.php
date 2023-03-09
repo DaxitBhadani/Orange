@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Interest;
 use App\Models\LiveApplication;
 use App\Models\User;
 use App\Models\UserImages;
+use App\Models\UserInterest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
@@ -258,7 +260,7 @@ class UserController extends Controller
                 $block_user = '<label class="switch switch-auto"><input type="checkbox" name="block_user" rel="' . $item->id . '" value="' . $item->block_user . '" id="block_user" class="block_user"><span class="btn block text-white">' . __('Block') . '</span> </label>';
             }
 
-            
+
             $view = '<a href="usersDetail/' . $item->id . '" data-title="' . $item->title . '" data-quality="' . $item->quality . '" data-size="' . $item->size . '" data-download="' . $item->download_type . '" data-sourcetype="' . $item->source_type . '" data-sourceurl="' . $item->source_url . '" data-accesstype="' . $item->access_type . '" class="me-3 btn btn-primary px-4 text-white edit" rel=' . $item->id . ' >' . __('View') . '</a>';
 
             $data[] = [$image, $item->identity, $item->name, $item->password, $item->age, $gender, $block_user, $view];
@@ -307,6 +309,9 @@ class UserController extends Controller
         $user->youtube = $request->youtube;
         $user->facebook = $request->facebook;
         $user->instagram = $request->instagram;
+
+        // $user->interest_ids = implode(',', $request->interest_ids);
+
         $user->save();
 
         if ($request->hasFile('images')) {
@@ -323,6 +328,14 @@ class UserController extends Controller
                 $userimage->save();
             }
         }
+
+        foreach ($request->interest_ids as $interest_id) {
+            $userInterest_ids = new UserInterest();
+            $userInterest_ids->user_id = $user->id;
+            $userInterest_ids->interest_id = $interest_id;
+            $userInterest_ids->save();
+        }
+
 
         return response()->json([
             'status' => true,
@@ -515,17 +528,8 @@ class UserController extends Controller
     public function updateUserDetail(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
-            //    'image' => 'required',
             'name' => 'required',
             'password' => 'required',
-            // 'lives_at' => 'required',
-            // 'age' => 'required',
-            // 'gender' => 'required',
-            // 'about' => 'required',
-            // 'bio' => 'required',
-            // 'youtube' => 'required',
-            // 'facebook' => 'required',
-            // 'instagram' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -579,5 +583,104 @@ class UserController extends Controller
                 'message' => 'user Not Found',
             ]);
         }
+    }
+
+    public function fetchUserList()
+    {
+        // $user = User::random()->limit(12)->get();
+        $user = User::all()->random(12);
+        return response()->json([
+            'status' => true,
+            'message' => 'User Fetch',
+            'data' => $user,
+        ]);
+    }
+
+    public function searchUser(Request $request)
+    {
+        $id = $request->interest_id;
+        $users = User::Where('name', 'LIKE', "%{$request->name}%")->whereHas('interest_ids', function ($query) use ($id) {
+            $query->where('interest_id', $id);
+        })->with(['interest_ids', 'interest_ids.interests'])->get();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Fetch content By Interest',
+            'data' =>  $users,
+        ]);
+
+    }
+
+    public function startMatching(Request $request)
+    {
+        if ($request->gender == 0) {
+            $user = User::get()->random(1);
+        } else {
+            $user = User::where('gender', $request->gender)->get()->random(1);
+        }
+       
+        return response()->json([
+            'status' => true,
+            'message' => 'Start Matching',
+            'data' =>  $user,
+        ]);
+    }
+
+    public function addUserInBlock(Request $request)
+    {
+        $user = User::where('id' , $request->my_user_id)->get()->first();
+        $array = explode(',', $user->block_user_record);
+        array_push($array, $request->user_id);
+        if (($key = array_search($request->user_id, $array)) !== false) {
+            unset($array[$key]);
+        }
+
+// print array to see latest values
+        // $user->block_user_record = implode(',', $array);
+        // $user->save();
+        return response()->json([
+            'status' => true,
+            'message' => 'Add User In Block',
+            'data' => $array,
+        ]);
+
+        // return response()->json([
+        //     'status' => true,
+        //     'message' => 'Add User In Block',
+        //     'data' => $addUserInBlock,
+        // ]);
+    }
+
+    public function removeUserFromBlockList(Request $request)
+    {
+        $removeUserFromBlockList = User::where('id' , $request->user_id)->get()->first();
+
+        $string = $removeUserFromBlockList->block_user_record;
+ 
+        $replaced = Str::replace($request->removeUserFromBlock, '', $string);
+
+        // $removeUserFromBlockList->block_user_record = explode(',',$replaced);
+
+        // $records = explode(',',$replaced);
+       
+        $removeUserFromBlockList->block_user_record = $replaced;
+
+        $removeUserFromBlockList->save();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Remove User In Block',
+            'data' => $removeUserFromBlockList,
+        ]);
+
+    }
+
+    public function replaceString()
+    {
+        $string = 'Welcom to Laravel';
+ 
+        $replaced = Str::replace('Laravel', 'NiceSnippets.com', $string);
+
+        dd($replaced);
     }
 }

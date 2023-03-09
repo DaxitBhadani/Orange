@@ -16,7 +16,7 @@ $(document).ready(function () {
             [0, "desc"]
         ],
         columnDefs: [{
-            targets: [],
+            targets: [0, 1, 2, 3, 4, 5, 6],
             orderable: false,
         }],
         ajax: {
@@ -28,6 +28,8 @@ $(document).ready(function () {
         },
     });
 
+
+
     $("#profileVerificationTable").on("change", ".approve_profile", function (event) {
         event.preventDefault();
         swal({
@@ -37,24 +39,24 @@ $(document).ready(function () {
             dangerMode: true,
         }).then((willDelete) => {
             if (willDelete) {
-                swal("Profile verification Approved", {
-                    icon: "success",
-                });
+                // swal("Profile verification Approved", {
+                //     icon: "success",
+                // });
     
                 if (user_type == "1") {
                     $id = $(this).attr("rel");
     
                     if ($(this).prop("checked") == true) {
-                        swal("Profile verification Approved", {
-                            icon: "success",
-                        });
+                        // swal("Profile verification Approved", {
+                        //     icon: "success",
+                        // });
                         $value = 2;
                         console.log("Checkbox is Checked.");
                         console.log("1 == true");
                     } else {
-                        swal("Profile verification Not Approved", {
-                            icon: "success",
-                        });
+                        // swal("Profile verification Not Approved", {
+                        //     icon: "success",
+                        // });
                         $value = 0;
                         console.log("Checkbox is unchecked.");
                         console.log("0 == false");
@@ -82,7 +84,7 @@ $(document).ready(function () {
                 }
             } else {
                 $("#profileVerificationTable").DataTable().ajax.reload(null, false);
-                swal("Record Not Rejected");
+                // swal("Record Not Rejected");
             }
         });
     });
@@ -96,24 +98,24 @@ $(document).ready(function () {
             dangerMode: true,
         }).then((willDelete) => {
             if (willDelete) {
-                swal("Profile verification Rejected", {
-                    icon: "success",
-                });
+                // swal("Profile verification Rejected", {
+                //     icon: "success",
+                // });
     
                 if (user_type == "1") {
                     $id = $(this).attr("rel");
     
                     if ($(this).prop("checked") == true) {
-                        swal("Profile verification Rejected", {
-                            icon: "success",
-                        });
+                        // swal("Profile verification Rejected", {
+                        //     icon: "success",
+                        // });
                         $value = 0;
                         console.log("Checkbox is Checked.");
                         console.log("1 == true");
                     } else {
-                        swal("Profile verification Not Rejected", {
-                            icon: "success",
-                        });
+                        // swal("Profile verification Not Rejected", {
+                        //     icon: "success",
+                        // });
                         $value = 0;
                         console.log("Checkbox is unchecked.");
                         console.log("0 == false");
@@ -141,10 +143,21 @@ $(document).ready(function () {
                 }
             } else {
                 $("#profileVerificationTable").DataTable().ajax.reload(null, false);
-                swal("Record Not Rejected");
+                // swal("Record Not Rejected");
             }
         });
     });
   
+
+    $("#profileVerificationTable").on("click", "img", function (e) {
+        e.preventDefault();
+
+        var image = $(this).data("image");
+        
+        $("#imagePreview").attr('src', `${image}`);
+
+        $("#imagePreviewModal").modal("show");
+
+    });
 
 });

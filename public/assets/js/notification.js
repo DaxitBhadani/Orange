@@ -16,7 +16,7 @@ $(document).ready(function () {
             [0, "desc"]
         ],
         columnDefs: [{
-            targets: [],
+            targets: [0, 1, 2],
             orderable: false,
         },],
         ajax: {
@@ -89,10 +89,10 @@ $(document).ready(function () {
                 } else if (response.status == 404) {
                     alert(response.message);
                 } else if (response.status == 200) {
-                    swal({
-                        title: "Notification Updated Succesfully!",
-                        icon: "success",
-                    });
+                    // swal({
+                    //     title: "Notification Updated Succesfully!",
+                    //     icon: "success",
+                    // });
                     $("#notificationTable").DataTable().ajax.reload(null, false);
                     $('#editNotificationModal').modal('hide');
 
@@ -126,10 +126,10 @@ $(document).ready(function () {
                             if (response.status == 404) {
                                 console.log(response.message);
                             } else if (response.status == 200) {
-                                swal(
-                                    `Notification Deleted Successfully`, {
-                                        icon: "success",
-                                    });
+                                // swal(
+                                //     `Notification Deleted Successfully`, {
+                                //         icon: "success",
+                                //     });
                                     $("#notificationTable").DataTable().ajax.reload(null, false);
                                 console.log(response.message);
                             }

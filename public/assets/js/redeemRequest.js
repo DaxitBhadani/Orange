@@ -10,7 +10,7 @@ $(document).ready(function () {
             [0, "desc"]
         ],
         columnDefs: [{
-            targets: [],
+            targets: [0, 1, 2, 3, 4, 5, 6],
             orderable: false,
         }],
         ajax: {
@@ -32,7 +32,7 @@ $(document).ready(function () {
             [0, "desc"]
         ],
         columnDefs: [{
-            targets: [],
+            targets: [0, 1, 2, 3, 4, 5, 6],
             orderable: false,
         }],
         ajax: {
@@ -114,10 +114,10 @@ $(document).ready(function () {
                 } else if (response.status == 404) {
                     alert(response.message);
                 } else if (response.status == 200) {
-                    swal({
-                        title: "Amount Paid Succesfully!",
-                        icon: "success",
-                    });
+                    // swal({
+                    //     title: "Amount Paid Succesfully!",
+                    //     icon: "success",
+                    // });
                     $("#pendingRedeemTable").DataTable().ajax.reload(null, false);
                     $("#completedRedeemTable").DataTable().ajax.reload(null, false);
                     $('#redeemCompleteModal').modal('hide');
@@ -136,24 +136,24 @@ $(document).ready(function () {
             dangerMode: true,
         }).then((willDelete) => {
             if (willDelete) {
-                swal("Redeem Request Deleted", {
-                    icon: "success",
-                });
+                // swal("Redeem Request Deleted", {
+                //     icon: "success",
+                // });
     
                 if (user_type == "1") {
                     $id = $(this).attr("rel");
     
                     if ($(this).prop("checked") == true) {
-                        swal("Redeem Request Deleted", {
-                            icon: "success",
-                        });
+                        // swal("Redeem Request Deleted", {
+                        //     icon: "success",
+                        // });
                         $value = 0;
                         console.log("Checkbox is Checked.");
                         console.log("1 == true");
                     } else {
-                        swal("Redeem Request Not Deleted", {
-                            icon: "success",
-                        });
+                        // swal("Redeem Request Not Deleted", {
+                        //     icon: "success",
+                        // });
                         $value = 1;
                         console.log("Checkbox is unchecked.");
                         console.log("0 == false");
@@ -182,7 +182,7 @@ $(document).ready(function () {
             } else {
                 $("#pendingRedeemTable").DataTable().ajax.reload(null, false);
                 $("#completedRedeemTable").DataTable().ajax.reload(null, false);
-                swal("User is Not Added in Block List");
+                // swal("User is Not Added in Block List");
             }
         });
     });
@@ -196,24 +196,24 @@ $(document).ready(function () {
             dangerMode: true,
         }).then((willDelete) => {
             if (willDelete) {
-                swal("Redeem Request Deleted", {
-                    icon: "success",
-                });
+                // swal("Redeem Request Deleted", {
+                //     icon: "success",
+                // });
     
                 if (user_type == "1") {
                     $id = $(this).attr("rel");
     
                     if ($(this).prop("checked") == true) {
-                        swal("Redeem Request Deleted", {
-                            icon: "success",
-                        });
+                        // swal("Redeem Request Deleted", {
+                        //     icon: "success",
+                        // });
                         $value = 0;
                         console.log("Checkbox is Checked.");
                         console.log("1 == true");
                     } else {
-                        swal("Redeem Request Not Deleted", {
-                            icon: "success",
-                        });
+                        // swal("Redeem Request Not Deleted", {
+                        //     icon: "success",
+                        // });
                         $value = 1;
                         console.log("Checkbox is unchecked.");
                         console.log("0 == false");
@@ -242,7 +242,7 @@ $(document).ready(function () {
             } else {
                 $("#pendingRedeemTable").DataTable().ajax.reload(null, false);
                 $("#completedRedeemTable").DataTable().ajax.reload(null, false);
-                swal("User is Not Added in Block List");
+                // swal("User is Not Added in Block List");
             }
         });
     });

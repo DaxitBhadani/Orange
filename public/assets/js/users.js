@@ -13,7 +13,7 @@ $(document).ready(function () {
             [0, "desc"]
         ],
         columnDefs: [{
-            targets: [],
+            targets: [0, 1, 2, 3, 4, 5, 6, 7],
             orderable: false,
         },],
         ajax: {
@@ -33,7 +33,7 @@ $(document).ready(function () {
             [0, "desc"]
         ],
         columnDefs: [{
-            targets: [],
+            targets: [0, 1, 2, 3, 4, 5, 6, 7],
             orderable: false,
         },],
         ajax: {
@@ -54,7 +54,7 @@ $(document).ready(function () {
             [0, "desc"]
         ],
         columnDefs: [{
-            targets: [],
+            targets: [0, 1, 2, 3, 4, 5, 6, 7],
             orderable: false,
         },],
         ajax: {
@@ -103,24 +103,24 @@ $(document).ready(function () {
             dangerMode: true,
         }).then((willDelete) => {
             if (willDelete) {
-                swal("User Is Blocked", {
-                    icon: "success",
-                });
+                // swal("User Is Blocked", {
+                //     icon: "success",
+                // });
 
                 if (user_type == "1") {
                     $id = $(this).attr("rel");
 
                     if ($(this).prop("checked") == true) {
-                        swal("User Is Blocked", {
-                            icon: "success",
-                        });
+                        // swal("User Is Blocked", {
+                        //     icon: "success",
+                        // });
                         $value = 1;
                         console.log("Checkbox is Checked.");
                         console.log("1 == true");
                     } else {
-                        swal("User Is Unblocked", {
-                            icon: "success",
-                        });
+                        // swal("User Is Unblocked", {
+                        //     icon: "success",
+                        // });
                         $value = 0;
                         console.log("Checkbox is unchecked.");
                         console.log("0 == false");
@@ -152,7 +152,7 @@ $(document).ready(function () {
                 $("#allUserTable").DataTable().ajax.reload(null, false);
                 $("#liveStreamersTable").DataTable().ajax.reload(null, false);
                 $("#fakeUsersTable").DataTable().ajax.reload(null, false);
-                swal("User is Not Added in Block List");
+                // swal("User is Not Added in Block List");
             }
         });
     });
@@ -166,24 +166,24 @@ $(document).ready(function () {
             dangerMode: true,
         }).then((willDelete) => {
             if (willDelete) {
-                swal("User Is Blocked", {
-                    icon: "success",
-                });
+                // swal("User Is Blocked", {
+                //     icon: "success",
+                // });
 
                 if (user_type == "1") {
                     $id = $(this).attr("rel");
 
                     if ($(this).prop("checked") == true) {
-                        swal("User Is Blocked", {
-                            icon: "success",
-                        });
+                        // swal("User Is Blocked", {
+                        //     icon: "success",
+                        // });
                         $value = 1;
                         console.log("Checkbox is Checked.");
                         console.log("1 == true");
                     } else {
-                        swal("User Is Unblocked", {
-                            icon: "success",
-                        });
+                        // swal("User Is Unblocked", {
+                        //     icon: "success",
+                        // });
                         $value = 0;
                         console.log("Checkbox is unchecked.");
                         console.log("0 == false");
@@ -216,7 +216,7 @@ $(document).ready(function () {
                 $("#allUserTable").DataTable().ajax.reload(null, false);
                 $("#liveStreamersTable").DataTable().ajax.reload(null, false);
                 $("#fakeUsersTable").DataTable().ajax.reload(null, false);
-                swal("User is Not Added in Block List");
+                // swal("User is Not Added in Block List");
             }
         });
     });
@@ -230,17 +230,17 @@ $(document).ready(function () {
             dangerMode: true,
         }).then((willDelete) => {
             if (willDelete) {
-                swal("User Is Blocked", {
-                    icon: "success",
-                });
+                // swal("User Is Blocked", {
+                //     icon: "success",
+                // });
 
                 if (user_type == "1") {
                     $id = $(this).attr("rel");
 
                     if ($(this).prop("checked") == true) {
-                        swal("User Is Blocked", {
-                            icon: "success",
-                        });
+                        // swal("User Is Blocked", {
+                        //     icon: "success",
+                        // });
                         $value = 1;
                         console.log("Checkbox is Checked.");
                         console.log("1 == true");
@@ -280,7 +280,7 @@ $(document).ready(function () {
                 $("#allUserTable").DataTable().ajax.reload(null, false);
                 $("#liveStreamersTable").DataTable().ajax.reload(null, false);
                 $("#fakeUsersTable").DataTable().ajax.reload(null, false);
-                swal("User is Not Added in Block List");
+                // swal("User is Not Added in Block List");
             }
         });
     });

@@ -147,4 +147,15 @@ class NotificationController extends Controller
         }
     }
 
+
+    public function fetchPlatformNotificationList(Request $request)
+    {
+        $platformNotification = Notification::latest()->get()->all();
+        return response()->json([
+            'status' => true,
+            'message' => 'Fetch Platform Notifications',
+            'data' => $platformNotification,
+        ]);
+    }
+
 }

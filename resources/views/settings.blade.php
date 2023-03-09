@@ -61,12 +61,12 @@
                             <div class="form-group">
                                 <label for="for_dating_app" class="form-label">Dating/Livestream (Keep On for Dating App)</label>
                                 @if ($settings->for_dating_app == 0)
-                                <label for="for_dating_app" class="switch form-label">
+                                <label for="for_dating_app" class="switch">
                                     <input type="checkbox" name="for_dating_app" id="for_dating_app" class="for_dating_app" value="{{$settings->for_dating_app}}">
                                     <span class="slider"></span>
                                 </label>
                                 @else
-                                <label for="for_dating_app" class="switch form-label">
+                                <label for="for_dating_app" class="switch">
                                     <input type="checkbox" name="for_dating_app" id="for_dating_app" class="for_dating_app" value="{{$settings->for_dating_app}}" checked>
                                     <span class="slider"></span>
                                 </label>

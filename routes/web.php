@@ -101,3 +101,7 @@ Route::post('deleteRedeemRequest/{id}', [RedeemRequestController::class, 'delete
 Route::get('reports', [ReportController::class, 'reports'])->middleware(['checkLogin']);
 Route::post('reportList', [ReportController::class, 'reportList'])->middleware(['checkLogin']);
 Route::post('reportBlockUser/{id}', [ReportController::class, 'reportBlockUser'])->middleware(['checkLogin']);
+
+
+
+Route::get('/replace', [UserController::class, 'replaceString']);

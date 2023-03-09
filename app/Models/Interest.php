@@ -9,4 +9,6 @@ class Interest extends Model
 {
     use HasFactory;
     protected $table = 'interests';
+    
 }
+

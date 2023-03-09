@@ -22,7 +22,7 @@ $(document).ready(function () {
             [0, "desc"]
         ],
         columnDefs: [{
-            targets: [],
+            targets: [0, 1, 2, 3],
             orderable: false,
         }],
         ajax: {
@@ -52,16 +52,16 @@ $("#liveApplicationTable").on("change", ".reject_application", function (event) 
                 $id = $(this).attr("rel");
 
                 if ($(this).prop("checked") == true) {
-                    swal("Live Application Rejected", {
-                        icon: "success",
-                    });
+                    // swal("Live Application Rejected", {
+                    //     icon: "success",
+                    // });
                     $value = 0;
                     console.log("Checkbox is Checked.");
                     console.log("1 == true");
                 } else {
-                    swal("Live Application Not Rejected", {
-                        icon: "success",
-                    });
+                    // swal("Live Application Not Rejected", {
+                    //     icon: "success",
+                    // });
                     $value = 1;
                     console.log("Checkbox is unchecked.");
                     console.log("0 == false");
@@ -89,7 +89,7 @@ $("#liveApplicationTable").on("change", ".reject_application", function (event) 
             }
         } else {
             $("#liveApplicationTable").DataTable().ajax.reload(null, false);
-            swal("User is Not Added in Block List");
+            // swal("User is Not Added in Block List");
         }
     });
 });
@@ -164,26 +164,26 @@ $("#liveApplicationDetailForm").on("change", ".approve_application", function (e
         dangerMode: true,
     }).then((willDelete) => {
         if (willDelete) {
-            swal("Live Application Approved", {
-                icon: "success",
-            });
+            // swal("Live Application Approved", {
+            //     icon: "success",
+            // });
 
             if (user_type == "1") {
 
                 $id = $(this).attr("rel");
 
                 if ($(this).prop("checked") == true) {
-                    swal("Live Application Approved", {
-                        icon: "success",
-                    });
+                    // swal("Live Application Approved", {
+                    //     icon: "success",
+                    // });
                     $value = 2;
                     console.log("Checkbox is Checked.");
                     console.log("1 == true");
                     window.location.replace(`${domainURL}liveapplication`);
                 } else {
-                    swal("Live Application Not Approved", {
-                        icon: "success",
-                    });
+                    // swal("Live Application Not Approved", {
+                    //     icon: "success",
+                    // });
                     $value = 0;
                     console.log("Checkbox is unchecked.");
                     console.log("0 == false");

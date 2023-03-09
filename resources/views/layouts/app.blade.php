@@ -138,7 +138,8 @@
                 </a>
                 <div class="btn-group me-1 mb-1">
                     <div class="dropdown">
-                        <button type="button" class="btn btn-success border-0 theme-bg px-4 d-flex align-items-center"
+                        <button type="button"
+                            class="btn btn-success border-0 theme-bg px-4 d-flex align-items-center"
                             data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i data-feather="log-out"></i>
                             <span class="ms-2">

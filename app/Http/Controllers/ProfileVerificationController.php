@@ -56,9 +56,9 @@ class ProfileVerificationController extends Controller
 
             $fetchUserImage = UserImages::where('user_id', $item->user_id)->get()->first();
 
-            $UserImage = '<img src="./upload/user/'. $fetchUserImage->user_image .'" alt="User image" width="50px" height="50px" style="object-fit: cover;">';
-            $selfieImage = '<img src="./upload/verified/'. $item->selfie .'" alt="Selfie image" width="50px" height="50px" style="object-fit: cover;">';
-            $docImage = '<img src="./upload/verified/'. $item->document .'" alt="ducument image" width="50px" height="50px" style="object-fit: cover;">';
+            $UserImage = '<img src="./upload/user/'. $fetchUserImage->user_image .'" data-image="./upload/user/'. $fetchUserImage->user_image .'" alt="User image" width="50px" height="50px" style="object-fit: cover;" data-bs-toggle="modal">';
+            $selfieImage = '<img src="./upload/verified/'. $item->selfie .'" data-image="./upload/verified/'. $item->selfie .'" alt="Selfie image" width="50px" height="50px" style="object-fit: cover;" data-bs-toggle="modal">';
+            $docImage = '<img src="./upload/verified/'. $item->document .'" data-image="./upload/verified/'. $item->document .'" alt="ducument image" width="50px" height="50px" style="object-fit: cover;" data-bs-toggle="modal">';
 
             if ($item->document_type == 1) {
                 $doc_type = 'Driving Licence';
